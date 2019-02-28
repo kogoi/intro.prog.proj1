@@ -1,5 +1,20 @@
-  void funCriacao(void);
+#include<stdio.h>
+#include<string.h>
+#define MAX 100
+	
+	void funCriacao(void);
 	void FunSave(void);
 	void FunMudarTudo(void);
 	void FunDEL(void);
 	void FunMostrar(void);
+
+void main(void){}
+
+	
+
+
+
+
+
+
+
