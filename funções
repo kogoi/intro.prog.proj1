@@ -1,0 +1,5 @@
+  void funCriacao(void);
+	void FunSave(void);
+	void FunMudarTudo(void);
+	void FunDEL(void);
+	void FunMostrar(void);
