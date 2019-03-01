@@ -13,12 +13,12 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #define MAX 100
 /*
  * 
  */
 //structs, tipos e etc..
-        personagem A[MAX];
         int i=0;
 	typedef struct{
 		int vida_max ;
@@ -33,14 +33,15 @@
 	typedef struct{
 		char nome[100];
 		char genero[9];
-		char idade;
+		char idade[3];
 		char raca;
 		char classe;
 		status status;
 	}personagem;
+        personagem A;
 	
 	//funçôes
-	void funCriacao(void);
+	personagem funCriacao(char *b);
 	void FunSave(void);
 	void FunMudarTudo(void);
 	void FunDEL(void);
@@ -51,37 +52,40 @@ int main(int argc, char** argv) {
     char escolhamenu,nomeA[100];
 	
     printf("Introdução\n");
-    do{
-	scanf("%c", &escolhamenu);
-	switch(escolhamenu) {
-		case 'c':
-		printf("Insira o nome do seu personagem.\n");	
+    printf("Insira o nome do seu personagem.\n");	
 		scanf("%s", &nomeA);
 		setbuf(stdin,NULL);
-		A[i]=funCriacao(nomeA);
-		i++;
+		A=funCriacao(&nomeA[0]);
+	
+    do{
+	scanf("%c", &escolhamenu);
+        setbuf(stdin,NULL);
+    }while(!(escolhamenu=='c'||escolhamenu=='s'||escolhamenu=='v'||escolhamenu=='d'));
+    
+	switch(escolhamenu) {
+		case 'c':
 		break;
 		case 's':
-		//Charmod(escolhamenu);
+		FunSave();
+                FunMostrar();
 		break;
 		case 'd':
 		//FunDEl();
 		case 'v':
-		//FunMostrar(escolhamenu);
+		FunMostrar();
 		break;
 		default:
 		printf("Alternativa invalida\n Digite uma alternativa valida\n");
 		}
-	}while(!(escolhamenu=='c'||escolhamenu=='s'||escolhamenu=='v'||escolhamenu=='d'));
     return (EXIT_SUCCESS);
 }
 
-void funCriacao(void){
+personagem funCriacao(char *b){
 		FILE *fp;
 		personagem a;
 		int v;
 		char gen;
-		do{
+		//do{
 	//nome
 			strcpy(a.nome,b);
 	//genero
@@ -109,7 +113,7 @@ void funCriacao(void){
 	//idade
 		printf("Insira sua idade.\n");
 		do{
-			scanf("%d",&a.idade);
+			scanf("%s",&a.idade);
 			setbuf(stdin,NULL);
 		}while(a.idade<0);
 	//raça
@@ -118,23 +122,32 @@ void funCriacao(void){
 	//classe
 		printf("Selecione sua classe.\n");
 	
-		scanf("%d",&v);
-		setbuf(stdin,NULL);
-		} while(v);
+		//scanf("%d",&v);
+		//setbuf(stdin,NULL);
+		//} while(v);
+                return(a);
 	}
 void FunSave(void){
 	FILE *fp;
-	personagem j;
 	
-	if((fp=fopen(A[i].nome,"wb"))==NULL){
+	if((fp=fopen(A.nome,"wb"))==NULL){
             printf("arquivo nulo.\n");
             return;
 		}
-	for(j=0;j=MAX;j++)
-            if(*A[j].nome)
-                if(fwrite(&A[j],sizeof(personagem), 1,fp)!=1)
+	fwrite(&A,sizeof(personagem), 1,fp);
         fclose(fp);
 	}	
-
-
-
+void FunMostrar(void){
+    FILE *fp;
+    if((fp=fopen(A.nome,"r"))==NULL){
+            printf("arquivo nulo.\n");
+            return;
+    }else{
+        printf("%s\n",A.nome);
+        printf("%s\n",A.genero);
+        printf("%s\n",A.idade);
+         }
+            
+    fclose(fp);
+    return;        
+}
