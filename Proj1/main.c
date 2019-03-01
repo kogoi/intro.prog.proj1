@@ -1,23 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   main.c
- * Author: Ismael Cleiton
- *
- * Created on 28 de Fevereiro de 2019, 21:16
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #define MAX 100
-/*
- * 
- */
+
 //structs, tipos e etc..
 int i=0;
 typedef struct{
@@ -41,67 +26,68 @@ typedef struct{
 personagem A;
 	
 //funçôes
-personagem funCriacao(char *b);
-void FunSave(void);
+void FunCriacao();
 void FunMudarTudo(void);
 void FunDEL(void);
 void FunMostrar(void);
 	
-	//main
-int main(int argc, char** argv) {
-    char escolhamenu,nomeA[100];
+//main
+int main(int argc, char* argv) {
+    int escolhamenu;
 	
     printf("BEM VINDO AO CRIADOR DE PERSONAGEM C&C(C&C)\n");
-    printf("Vamos começar pelo nome.\nInsira o nome do seu personagem.\n");	
-		scanf("%s", &nomeA);
-		setbuf(stdin,NULL);
-		A=funCriacao(&nomeA[0]);
-	
+    printf("Vamos começar pelo nome.\n");
+    FunCriacao();
     do{
-        printf("o que você deseja fazer agora podemos\n*Salvar seu personagem para isso digite '1'\n*Modificar um personagem já salvo para isso digite '2'\n*exibir ficha de um personagem salvo, para isso digite '3'");
-	scanf("%c", &escolhamenu);
-        setbuf(stdin,NULL);
-    }while(!(escolhamenu=='1'||escolhamenu=='2'||escolhamenu=='3'||escolhamenu=='4'));
+        do{
+            printf("o que você deseja fazer agora podemos\n*Criar um novo personagem para isso digite '1'\n*Modificar um personagem já salvo para isso digite '2'\n*exibir ficha de um personagem salvo, para isso digite '3'.\n*Deletar personagem Salvo.\n");
+            scanf("%c", &escolhamenu);
+            setbuf(stdin,NULL);
+    }while(!(escolhamenu==1||escolhamenu==2||escolhamenu==3||escolhamenu==4));
     
 	switch(escolhamenu) {
-		case 'c':
+		case 1:
+		FunCriacao();
 		break;
-		case 's':
-		FunSave();
-                FunMostrar();
-		break;
-		case 'd':
-		//FunDEl();
-		case 'v':
+		case 2:
+		//funMod();
+		case 3:
 		FunMostrar();
 		break;
+                case 4:
+                //FunDEl();
+                break;
 		default:
-		printf("Alternativa invalida\n Digite uma alternativa valida\n");
+		printf("Alternativa invalida.\n Digite uma alternativa valida.\n");
 		}
+        printf("deseja retornar ao menu?\n*Se sim digite '1'.\n*Se não insira '0'.\n >> ")
+        scanf("%d",&escolhamenu)
+    }while(escolhamenu);
     return (EXIT_SUCCESS);
 }
 
-personagem funCriacao(char *b){
-		FILE *fp;
-		personagem a;
-		int choice,v;
+//funções
+void FunCriacao(void){
+                FILE *fp;
+		int choice;
 		char gen;
-		//do{
 	//nome
-			strcpy(a.nome,b);
+         printf("Insira o nome do seu personagem.\n >> ");  
+         scanf("%99[^\n]", &A.nome);
+         setbuf(stdin,NULL);
 	//genero
-			printf("\n\tSelecione um genero:\n\n1. Feminino\n2. Masculino\n3. Outros\nNUMBER >> ");
+	printf("\n\tSelecione um genero:\n\n1. Feminino\n2. Masculino\n3. Outros\nNUMBER >> ");
 	do{
 		scanf("%i",&gen);
 			switch(gen){
 				case 1:
-				strcpy(a.genero,"Feminino");
+				strcpy(A.genero,"Feminino");
 				break;
 				case 2:
-				strcpy(a.genero,"Masculino");
+				strcpy(A.genero,"Masculino");
 				break;
 				case 3:
-				strcpy(a.genero,"Outros");
+				strcpy(A.genero,"Outros");
 				break;
 				default:
 				printf("Insira um caractere valido.\n>> ");
@@ -110,26 +96,26 @@ personagem funCriacao(char *b){
 	//idade
 	printf("\n\n\tInsira sua idade.\n>> ");
         do{
-        scanf("%d",&a.idade);
+        scanf("%d",&A.idade);
         setbuf(stdin,NULL);
-	}while(a.idade<0);
+	}while(A.idade<0);
 	//raça
 	printf ("\n\tSelecione a sua raca. \n\n");
         printf ("1. HUMANO\n2. ELFO\n3. ANAO\n4. HALFLINGS\n5. GNOMOS\n6. MEIO-ORC\nNUMBER >> ");
         do{
         scanf ("%i",&choice);
         switch(choice){
-         case 1:strcpy(a.raca,"HUMANO");
+         case 1:strcpy(A.raca,"HUMANO");
                 break;
-         case 2:strcpy(a.raca,"ELFO");
+         case 2:strcpy(A.raca,"ELFO");
                 break;
-         case 3:strcpy(a.raca,"ANAO");
+         case 3:strcpy(A.raca,"ANAO");
                 break;
-         case 4:strcpy(a.raca,"HALFLINGS");
+         case 4:strcpy(A.raca,"HALFLINGS");
                 break;
-         case 5:strcpy(a.raca,"GNOMOS");
+         case 5:strcpy(A.raca,"GNOMOS");
                 break;
-         case 6:strcpy(a.raca,"MEIO-ORC");
+         case 6:strcpy(A.raca,"MEIO-ORC");
                 break;
          default: printf ("\nOpcao invalida. \nNUMBER >> ");
         }
@@ -140,54 +126,58 @@ personagem funCriacao(char *b){
         do{
         scanf ("%i",&choice);
         switch(choice){
-         case 1:strcpy(a.classe,"GUERREIRO");
+         case 1:strcpy(A.classe,"GUERREIRO");
                 break;
-         case 2:strcpy(a.classe,"MAGO");
+         case 2:strcpy(A.classe,"MAGO");
                 break;
-         case 3:strcpy(a.classe,"FEITICEIRO");
+         case 3:strcpy(A.classe,"FEITICEIRO");
                 break;
-         case 4:strcpy(a.classe,"BARBARO");
+         case 4:strcpy(A.classe,"BARBARO");
                 break;
-         case 5:strcpy(a.classe,"ASSASSINO");
+         case 5:strcpy(A.classe,"ASSASSINO");
                 break;
-         case 6:strcpy(a.classe,"DRUIDA");
+         case 6:strcpy(A.classe,"DRUIDA");
                 break;
-         case 7:strcpy(a.classe,"CLERIGO");
+         case 7:strcpy(A.classe,"CLERIGO");
                 break;
-         case 8:strcpy(a.classe,"CACADOR");
+         case 8:strcpy(A.classe,"CACADOR");
                 break;
-         case 9:strcpy(a.classe,"PALADINO");
+         case 9:strcpy(A.classe,"PALADINO");
                 break;
          default: printf ("\nOpcao invalida. \nNUMBER >> ");
         }
     }while (choice!=1&&choice!=2&&choice!=3&&choice!=4&&choice!=5&&choice!=6&&choice!=7&&choice!=8&&choice!=9);
     
-    
-                return(a);
-	}
-void FunSave(void){
-	FILE *fp;
-	
-	if((fp=fopen(A.nome,"wb"))==NULL){
+    if((fp=fopen(A.nome,"wb"))==NULL){
             printf("arquivo nulo.\n");
             return;
 		}
 	fwrite(&A,sizeof(personagem), 1,fp);
         fclose(fp);
-	}	
+        A.nome=A.genero=A.idade=A.raca=A.classe=A.status=0;
+        return;
+	}
 void FunMostrar(void){
     FILE *fp;
+    printf("Insira o nome de um personagem salvo");
+    scanf("%99[^\n]", &A.nome);
+    
     if((fp=fopen(A.nome,"r"))==NULL){
-            printf("arquivo nulo.\n");
+            printf("arquivo nulo ou nome errado.\n");
             return;
     }else{
-        printf("%s\n",A.nome);
-        printf("%s\n",A.genero);
-        printf("%s\n",A.idade);
-         }
-            
+        printf("Nome >> %s\n",A.nome);
+        printf("Genero >> %s\n",A.genero);
+        printf("Idade >> %d\n",A.idade);
+        printf("Raca >> %s\n",A.raca);
+        printf("Classe >> %s\n",A.classe);
+        printf("Status >>\n");
+    
+    }
+    A.nome=A.genero=A.idade=A.raca=A.classe=A.status=0;  
     fclose(fp);
     return;        
 }
+
 
 
