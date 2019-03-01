@@ -6,7 +6,7 @@
 //structs, tipos e etc..
 int i=0;
 typedef struct{
-		int vida_max ;
+		int vida_max;
 		int energia_max;
 		int pt_forca;
 		int pt_destreza;
@@ -24,7 +24,6 @@ typedef struct{
 		status status;
 	}personagem;
 personagem A;
-personagem* pa=&A;
 	
 //funçôes
 void FunCriacao();
@@ -41,7 +40,7 @@ int main(int argc, char* argv) {
     FunCriacao();
     do{
         do{
-            printf("o que voce deseja fazer agora podemos\n*Criar um novo personagem para isso digite '1'\n\n*Modificar um personagem já salvo para isso digite '2'\n\n*exibir ficha de um personagem salvo, para isso digite '3'.\n\n*Deletar personagem Salvo, para isso digite '4'.\n\n*Sair '0'.\n\n");
+            printf("o que voce deseja fazer agora podemos\n*Criar um novo personagem para isso digite '1'\n\n*Modificar um personagem salvo para isso digite '2'\n\n*exibir ficha de um personagem salvo, para isso digite '3'.\n\n*Deletar personagem Salvo, para isso digite '4'.\n\n*Sair '0'.\n\n");
             scanf("%d", &escolhamenu);
             setbuf(stdin,NULL);
         }while(!(escolhamenu==1||escolhamenu==2||escolhamenu==3||escolhamenu==4||escolhamenu==0));
@@ -55,13 +54,13 @@ int main(int argc, char* argv) {
 		case 3:
 		FunMostrar();
 		break;
-                case 4:
-                //FunDEl();
-                break;
+        case 4:
+        //FunDEl();
+        break;
 		default:
 		printf("Alternativa invalida.\n Digite uma alternativa valida.\n");
 		}
-        printf("deseja retornar ao menu?\n*Se sim digite '1'.\n*Se não insira '0'.\n >> ");
+        printf("deseja retornar ao menu?\n*Se sim digite '1'.\n*Se nao insira '0'.\n >> ");
         scanf("%d",&escolhamenu);
     }while(escolhamenu);
     return (EXIT_SUCCESS);
@@ -69,8 +68,8 @@ int main(int argc, char* argv) {
 
 //funções
 void FunCriacao(void){
-                FILE *fp;
-		int choice;
+    FILE *fp;
+	int s,choice;
 	//nome
          printf("Insira o nome do seu personagem.\n >> ");  
          scanf("%99[^\n]", &A.nome);
@@ -146,7 +145,69 @@ void FunCriacao(void){
          default: printf ("\nOpcao invalida. \nNUMBER >> ");
         }
     }while (choice!=1&&choice!=2&&choice!=3&&choice!=4&&choice!=5&&choice!=6&&choice!=7&&choice!=8&&choice!=9);
-    
+	//status
+	A.status.vida_max=A.status.energia_max=A.status.pt_forca=A.status.pt_destreza=A.status.pt_const=A.status.pt_sab=A.status.pt_int=A.status.pt_cas=0;
+    if(!strcmp(A.raca,"HUMANO")){
+		A.status.vida_max+=(s=rand()%20<8)?8+1:s+1;
+		A.status.energia_max+=(s=rand()%20<8)?8+1:s+1;
+		A.status.pt_forca+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_destreza+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_const+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_sab+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_int+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_cas+=(s=rand()%20<5)?5+1:s+1;
+	}
+	if(!strcmp(A.raca,"ELFO")){
+		A.status.vida_max+=(s=rand()%20<8)?8+1:s+1;
+		A.status.energia_max+=(s=rand()%20<8)?8+1:s+1;
+		A.status.pt_forca+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_destreza+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_const+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_sab+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_int+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_cas+=(s=rand()%20<5)?5+1:s+1;
+	}
+	if(!strcmp(A.raca,"ANAO")){
+		A.status.vida_max+=(s=rand()%20<8)?8+1:s+1;
+		A.status.energia_max+=(s=rand()%20<8)?8+1:s+1;
+		A.status.pt_forca+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_destreza+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_const+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_sab+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_int+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_cas+=(s=rand()%20<5)?5+1:s+1;
+	}
+	if(!strcmp(A.raca,"HALFLINGS")){
+		A.status.vida_max+=(s=rand()%20<8)?8+1:s+1;
+		A.status.energia_max+=(s=rand()%20<8)?8+1:s+1;
+		A.status.pt_forca+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_destreza+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_const+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_sab+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_int+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_cas+=(s=rand()%20<5)?5+1:s+1;
+	}
+	if(!strcmp(A.raca,"GNOMOS")){
+		A.status.vida_max+=(s=rand()%20<8)?8+1:s+1;
+		A.status.energia_max+=(s=rand()%20<8)?8+1:s+1;
+		A.status.pt_forca+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_destreza+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_const+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_sab+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_int+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_cas+=(s=rand()%20<5)?5+1:s+1;
+	}
+	if(!strcmp(A.raca,"MEIO-ORC")){
+		A.status.vida_max+=(s=rand()%20<8)?8+1:s+1;
+		A.status.energia_max+=(s=rand()%20<8)?8+1:s+1;
+		A.status.pt_forca+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_destreza+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_const+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_sab+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_int+=(s=rand()%20<5)?5+1:s+1;
+		A.status.pt_cas+=(s=rand()%20<5)?5+1:s+1;
+	}
+	//salvando
     if((fp=fopen(A.nome,"wb"))==NULL){
             printf("arquivo nulo.\n");
             return;
@@ -157,24 +218,27 @@ void FunCriacao(void){
 	}
 void FunMostrar(void){
     FILE *fp;
+	void *pa;
     personagem a;
+	pa=&a;
     printf("Insira o nome de um personagem salvo\n\n>> ");
     scanf("%99[^\n]", &a.nome);
-    if((fp=fopen(a.nome,"rb"))==NULL){
-            printf("arquivo nulo ou nome errado.\n");
-            exit(1);  
-    }
-    a=(personagem*)fp;
-        printf("Nome >> %s\n",a.nome);
-        printf("Genero >> %s\n",a.genero);
-        printf("Idade >> %d\n",a.idade);
-        printf("Raca >> %s\n",a.raca);
-        printf("Classe >> %s\n",a.classe);
-        printf("Status >>\n");
+	
+	if((fp=fopen(a.nome,"r"))==NULL){
+            printf("arquivo nulo.\n");
+            return;
+		}
+	fread(pa,sizeof(personagem),1,fp);
+    
+        printf("\tNome \n\t>> %s\n",a.nome);
+        printf("\tGenero \n\t>> %s\n",a.genero);
+        printf("\tIdade \n\t>> %d\n",a.idade);
+        printf("\tRaca \n\t>> %s\n",a.raca);
+        printf("\tClasse \n\t>> %s\n",a.classe);
+        printf("\tStatus >>\n\tVida Maxima >> %d\n\tEnergia Maxima >> %d\n\tPontos de Força >> %d\n\tPontos de Destreza >> %d\n\tPontos de Constituiçao >> %d\n\tPontos de Sabedoria >> %d\n\tPontos de Inteligencia >> %d\n\tPontos de Carisma >> %d\n\t",a.status.vida_max,a.status.energia_max,a.status.pt_forca,a.status.pt_destreza,a.status.pt_const,a.status.pt_sab,a.status.pt_int,a.status.pt_cas);
     
     
     //A.nome=A.genero=A.idade=A.raca=A.classe=A.status=0;  
     fclose(fp);
     return;        
 }
-
