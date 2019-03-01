@@ -35,7 +35,7 @@ void FunMostrar(void);
 //main
 int main(int argc, char* argv) {
     int escolhamenu;
-	
+
     printf("BEM VINDO AO CRIADOR DE PERSONAGEM C&C(C&C)\n\n\n\n");
     printf("Vamos comecar pelo nome.\n\n");
     FunCriacao();
@@ -177,25 +177,4 @@ void FunMostrar(void){
     fclose(fp);
     return;        
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
