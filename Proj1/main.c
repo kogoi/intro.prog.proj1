@@ -27,7 +27,7 @@ typedef struct {
 } personagem;
 personagem A;
 
-//funçôes
+//funcoes
 void FunCriacao();
 void FunMudarTudo(void);
 void FunDEL(void);
@@ -41,7 +41,7 @@ int main(int argc, char* argv) {
     printf("BEM VINDO AO CRIADOR DE PERSONAGEM C&C(C&C)\n\n\n\n");
     do {
         do {
-            printf("\tMENU\n*Criar um novo personagem para isso digite '1'\n\n*Modificar um personagem salvo para isso digite '2'\n\n*exibir ficha de um personagem salvo, para isso digite '3'.\n\n*Deletar personagem Salvo, para isso digite '4'.\n\n*Sair '0'.\n\n");
+            printf("\t\tMENU\n*Criar um novo personagem \n>> digite '1'\n\n*Modificar um personagem salvo \n>> digite '2'\n\n*exibir ficha de um personagem salvo\n>> digite '3'\n\n*Deletar personagem Salvo\n>> digite '4'.\n\n*Sair\n>> '0'\n\n>> ");
             scanf("%d", &escolhamenu);
             setbuf(stdin, NULL);
         } while (!(escolhamenu == 1 || escolhamenu == 2 || escolhamenu == 3 || escolhamenu == 4 || escolhamenu == 0));
@@ -95,7 +95,7 @@ void FunCriacao(void) {
         }
     } while (choice != 1 && choice != 2 && choice != 3 && choice != 4);
     //idade
-    printf("\n\n\tInsira sua idade.\n>> ");
+    printf("\n\n\tInsira sua idade.\n\nNUMBER>> ");
     do {
         scanf("%d", &A.idade);
     } while (A.idade < 0);
@@ -150,64 +150,64 @@ void FunCriacao(void) {
     //status
     A.status.vida_max = A.status.energia_max = A.status.pt_forca = A.status.pt_destreza = A.status.pt_const = A.status.pt_sab = A.status.pt_int = A.status.pt_cas = 0;
     if (!strcmp(A.raca, "HUMANO")) {
-        A.status.vida_max += (s = rand() % 20 < 8) ? 8 + 1 : s + 1;
-        A.status.energia_max += (s = rand() % 20 < 8) ? 8 + 1 : s + 1;
-        A.status.pt_forca += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_destreza += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_const += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_sab += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_int += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_cas += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
+        A.status.vida_max += ((s = rand() % 20) < 8) ? 8 + 1 : s + 1;
+        A.status.energia_max += ((s = rand() % 20) < 8) ? 8 + 1 : s + 1;
+        A.status.pt_forca += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_destreza += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_const += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_sab += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_int += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_cas += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
     }
     if (!strcmp(A.raca, "ELFO")) {
-        A.status.vida_max += (s = rand() % 20 < 8) ? 8 + 1 : s + 1;
-        A.status.energia_max += (s = rand() % 20 < 8) ? 8 + 1 : s + 1;
-        A.status.pt_forca += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_destreza += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_const += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_sab += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_int += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_cas += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
+        A.status.vida_max += ((s = rand() % 20) < 8) ? 8 + 1 : s + 1;
+        A.status.energia_max += ((s = rand() % 20) < 8) ? 8 + 1 : s + 1;
+        A.status.pt_forca += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_destreza += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_const += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_sab += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_int += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_cas += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
     }
     if (!strcmp(A.raca, "ANAO")) {
-        A.status.vida_max += (s = rand() % 20 < 8) ? 8 + 1 : s + 1;
-        A.status.energia_max += (s = rand() % 20 < 8) ? 8 + 1 : s + 1;
-        A.status.pt_forca += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_destreza += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_const += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_sab += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_int += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_cas += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
+        A.status.vida_max += ((s = rand() % 20) < 8) ? 8 + 1 : s + 1;
+        A.status.energia_max += ((s = rand() % 20) < 8) ? 8 + 1 : s + 1;
+        A.status.pt_forca += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_destreza += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_const += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_sab += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_int += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_cas += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
     }
     if (!strcmp(A.raca, "HALFLINGS")) {
-        A.status.vida_max += (s = rand() % 20 < 8) ? 8 + 1 : s + 1;
-        A.status.energia_max += (s = rand() % 20 < 8) ? 8 + 1 : s + 1;
-        A.status.pt_forca += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_destreza += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_const += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_sab += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_int += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_cas += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
+        A.status.vida_max += ((s = rand() % 20) < 8) ? 8 + 1 : s + 1;
+        A.status.energia_max += ((s = rand() % 20) < 8) ? 8 + 1 : s + 1;
+        A.status.pt_forca += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_destreza += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_const += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_sab += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_int += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_cas += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
     }
     if (!strcmp(A.raca, "GNOMOS")) {
-        A.status.vida_max += (s = rand() % 20 < 8) ? 8 + 1 : s + 1;
-        A.status.energia_max += (s = rand() % 20 < 8) ? 8 + 1 : s + 1;
-        A.status.pt_forca += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_destreza += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_const += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_sab += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_int += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_cas += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
+        A.status.vida_max += ((s = rand() % 20) < 8) ? 8 + 1 : s + 1;
+        A.status.energia_max += ((s = rand() % 20) < 8) ? 8 + 1 : s + 1;
+        A.status.pt_forca += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_destreza += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_const += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_sab += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_int += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_cas += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
     }
     if (!strcmp(A.raca, "MEIO-ORC")) {
-        A.status.vida_max += (s = rand() % 20 < 8) ? 8 + 1 : s + 1;
-        A.status.energia_max += (s = rand() % 20 < 8) ? 8 + 1 : s + 1;
-        A.status.pt_forca += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_destreza += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_const += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_sab += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_int += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
-        A.status.pt_cas += (s = rand() % 20 < 5) ? 5 + 1 : s + 1;
+        A.status.vida_max += ((s = rand() % 20) < 8) ? 8 + 1 : s + 1;
+        A.status.energia_max += ((s = rand() % 20) < 8) ? 8 + 1 : s + 1;
+        A.status.pt_forca += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_destreza += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_const += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_sab += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_int += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
+        A.status.pt_cas += ((s = rand() % 20) < 5) ? 5 + 1 : s + 1;
     }
     //salvando
     if ((fp = fopen(A.nome, "wb")) == NULL) {
@@ -228,21 +228,22 @@ void FunMostrar(void) {
     scanf("%99[^\n]", &a.nome);
 
     if ((fp = fopen(a.nome, "r")) == NULL) {
-        printf("arquivo nulo.\n");
+        printf("Nome invalido\n");
         return;
     }
     fread(pa, sizeof (personagem), 1, fp);
 
-    printf("\tNome \n\t>> %s\n", a.nome);
-    printf("\tGenero \n\t>> %s\n", a.genero);
-    printf("\tIdade \n\t>> %d\n", a.idade);
-    printf("\tRaca \n\t>> %s\n", a.raca);
-    printf("\tClasse \n\t>> %s\n", a.classe);
-    printf("\tStatus >>\n\tVida Maxima >> %d\n\tEnergia Maxima >> %d\n\tPontos de Força >> %d\n\tPontos de Destreza >> %d\n\tPontos de Constituiçao >> %d\n\tPontos de Sabedoria >> %d\n\tPontos de Inteligencia >> %d\n\tPontos de Carisma >> %d\n\t", a.status.vida_max, a.status.energia_max, a.status.pt_forca, a.status.pt_destreza, a.status.pt_const, a.status.pt_sab, a.status.pt_int, a.status.pt_cas);
+    printf("\tNome:\n\t>> %s\n", a.nome);
+    printf("\tGenero:\n\t>> %s\n", a.genero);
+    printf("\tIdade:\n\t>> %d anos\n", a.idade);
+    printf("\tRaca:\n\t>> %s\n", a.raca);
+    printf("\tClasse:\n\t>> %s\n", a.classe);
+    printf("\tStatus:\n\tVida Maxima >> %d\n\tEnergia Maxima >> %d\n\tPontos de Forca >> %d\n\tPontos de Destreza >> %d\n\tPontos de Constituicao >> %d\n\tPontos de Sabedoria >> %d\n\tPontos de Inteligencia >> %d\n\tPontos de Carisma >> %d\n\n\n", a.status.vida_max, a.status.energia_max, a.status.pt_forca, a.status.pt_destreza, a.status.pt_const, a.status.pt_sab, a.status.pt_int, a.status.pt_cas);
 
 
     //A.nome=A.genero=A.idade=A.raca=A.classe=A.status=0;  
     fclose(fp);
     return;
 }
+
 
