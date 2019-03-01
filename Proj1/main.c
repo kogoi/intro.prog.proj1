@@ -18,9 +18,9 @@ typedef struct{
 typedef struct{
 		char nome[100];
 		char genero[9];
-		int idade[3];
-		char raca;
-		char classe;
+		int idade;
+		char raca[MAX];
+		char classe[MAX];
 		status status;
 	}personagem;
 personagem A;
@@ -61,7 +61,7 @@ int main(int argc, char* argv) {
 		printf("Alternativa invalida.\n Digite uma alternativa valida.\n");
 		}
         printf("deseja retornar ao menu?\n*Se sim digite '1'.\n*Se não insira '0'.\n >> ")
-        scanf("%d",&escolhamenu)
+        scanf("%d",&escolhamenu);
     }while(escolhamenu);
     return (EXIT_SUCCESS);
 }
@@ -168,7 +168,7 @@ void FunMostrar(void){
     }else{
         printf("Nome >> %s\n",A.nome);
         printf("Genero >> %s\n",A.genero);
-        printf("Idade >> %d\n",A.idade);
+        printf("Idade >> %c\n",A.idade);
         printf("Raca >> %s\n",A.raca);
         printf("Classe >> %s\n",A.classe);
         printf("Status >>\n");
@@ -178,6 +178,7 @@ void FunMostrar(void){
     fclose(fp);
     return;        
 }
+
 
 
 
