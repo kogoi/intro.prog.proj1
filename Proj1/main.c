@@ -19,8 +19,8 @@
  * 
  */
 //structs, tipos e etc..
-        int i=0;
-	typedef struct{
+int i=0;
+typedef struct{
 		int vida_max ;
 		int energia_max;
 		int pt_forca;
@@ -30,37 +30,38 @@
 		int pt_int;
 		int pt_cas;
 	}status;
-	typedef struct{
+typedef struct{
 		char nome[100];
 		char genero[9];
-		char idade[3];
+		int idade[3];
 		char raca;
 		char classe;
 		status status;
 	}personagem;
-        personagem A;
+personagem A;
 	
-	//funçôes
-	personagem funCriacao(char *b);
-	void FunSave(void);
-	void FunMudarTudo(void);
-	void FunDEL(void);
-	void FunMostrar(void);
+//funçôes
+personagem funCriacao(char *b);
+void FunSave(void);
+void FunMudarTudo(void);
+void FunDEL(void);
+void FunMostrar(void);
 	
 	//main
 int main(int argc, char** argv) {
     char escolhamenu,nomeA[100];
 	
-    printf("Introdução\n");
-    printf("Insira o nome do seu personagem.\n");	
+    printf("BEM VINDO AO CRIADOR DE PERSONAGEM C&C(C&C)\n");
+    printf("Vamos começar pelo nome.\nInsira o nome do seu personagem.\n");	
 		scanf("%s", &nomeA);
 		setbuf(stdin,NULL);
 		A=funCriacao(&nomeA[0]);
 	
     do{
+        printf("o que você deseja fazer agora podemos\n*Salvar seu personagem para isso digite '1'\n*Modificar um personagem já salvo para isso digite '2'\n*exibir ficha de um personagem salvo, para isso digite '3'");
 	scanf("%c", &escolhamenu);
         setbuf(stdin,NULL);
-    }while(!(escolhamenu=='c'||escolhamenu=='s'||escolhamenu=='v'||escolhamenu=='d'));
+    }while(!(escolhamenu=='1'||escolhamenu=='2'||escolhamenu=='3'||escolhamenu=='4'));
     
 	switch(escolhamenu) {
 		case 'c':
@@ -83,48 +84,85 @@ int main(int argc, char** argv) {
 personagem funCriacao(char *b){
 		FILE *fp;
 		personagem a;
-		int v;
+		int choice,v;
 		char gen;
 		//do{
 	//nome
 			strcpy(a.nome,b);
 	//genero
-			printf("Selecione um genero:\n*F para Feminino\n*M para Masculino\n*O para Outros\n");
-			do{
-				scanf("%c",&gen);
-				setbuf(stdin,NULL);
-					switch(gen){
-						case 'F':
-						case 'f':
-						strcpy(a.genero,"Feminino");
-						break;
-						case 'M':
-						case 'm':
-						strcpy(a.genero,"Masculino");
-						break;
-						case 'O':
-						case 'o':
-						strcpy(a.genero,"Outros");
-						break;
-						default:
-						printf("Insira um caractere valido.\n");
-					}
-			}while(gen!='F'&&gen!='f'&&gen!='M'&&gen!='m'&&gen!='O'&&gen!='o');
+			printf("\n\tSelecione um genero:\n\n1. Feminino\n2. Masculino\n3. Outros\nNUMBER >> ");
+	do{
+		scanf("%i",&gen);
+			switch(gen){
+				case 1:
+				strcpy(a.genero,"Feminino");
+				break;
+				case 2:
+				strcpy(a.genero,"Masculino");
+				break;
+				case 3:
+				strcpy(a.genero,"Outros");
+				break;
+				default:
+				printf("Insira um caractere valido.\n>> ");
+			}
+		 }while(gen!=1&&gen!=2&&gen!=3&&gen!=4);
 	//idade
-		printf("Insira sua idade.\n");
-		do{
-			scanf("%s",&a.idade);
-			setbuf(stdin,NULL);
-		}while(a.idade<0);
+	printf("\n\n\tInsira sua idade.\n>> ");
+        do{
+        scanf("%d",&a.idade);
+        setbuf(stdin,NULL);
+	}while(a.idade<0);
 	//raça
-		printf("Selecione sua raça.\n");
-	
+	printf ("\n\tSelecione a sua raca. \n\n");
+        printf ("1. HUMANO\n2. ELFO\n3. ANAO\n4. HALFLINGS\n5. GNOMOS\n6. MEIO-ORC\nNUMBER >> ");
+        do{
+        scanf ("%i",&choice);
+        switch(choice){
+         case 1:strcpy(a.raca,"HUMANO");
+                break;
+         case 2:strcpy(a.raca,"ELFO");
+                break;
+         case 3:strcpy(a.raca,"ANAO");
+                break;
+         case 4:strcpy(a.raca,"HALFLINGS");
+                break;
+         case 5:strcpy(a.raca,"GNOMOS");
+                break;
+         case 6:strcpy(a.raca,"MEIO-ORC");
+                break;
+         default: printf ("\nOpcao invalida. \nNUMBER >> ");
+        }
+        }while (choice!=1&&choice!=2&&choice!=3&&choice!=4&&choice!=5&&choice!=6);
 	//classe
-		printf("Selecione sua classe.\n");
-	
-		//scanf("%d",&v);
-		//setbuf(stdin,NULL);
-		//} while(v);
+	printf ("\n\tSelecione a sua classe. \n\n");
+        printf ("1. GUERREIRO\n2. MAGO\n3. FEITICEIRO\n4. BARBARO\n5. ASSASSINO\n6. DRUIDA\n7. CLERIGO\n8. CACADOR\n9. PALADINO\nNUMBER >> ");
+        do{
+        scanf ("%i",&choice);
+        switch(choice){
+         case 1:strcpy(a.classe,"GUERREIRO");
+                break;
+         case 2:strcpy(a.classe,"MAGO");
+                break;
+         case 3:strcpy(a.classe,"FEITICEIRO");
+                break;
+         case 4:strcpy(a.classe,"BARBARO");
+                break;
+         case 5:strcpy(a.classe,"ASSASSINO");
+                break;
+         case 6:strcpy(a.classe,"DRUIDA");
+                break;
+         case 7:strcpy(a.classe,"CLERIGO");
+                break;
+         case 8:strcpy(a.classe,"CACADOR");
+                break;
+         case 9:strcpy(a.classe,"PALADINO");
+                break;
+         default: printf ("\nOpcao invalida. \nNUMBER >> ");
+        }
+    }while (choice!=1&&choice!=2&&choice!=3&&choice!=4&&choice!=5&&choice!=6&&choice!=7&&choice!=8&&choice!=9);
+    
+    
                 return(a);
 	}
 void FunSave(void){
@@ -151,3 +189,5 @@ void FunMostrar(void){
     fclose(fp);
     return;        
 }
+
+
