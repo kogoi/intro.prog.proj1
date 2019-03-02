@@ -4,7 +4,6 @@
 #define MAX 100
 
 //structs, tipos e etc..
-int i = 0;
 
 typedef struct {
     int vida_max;
@@ -67,7 +66,7 @@ int main(int argc, char* argv) {
     return (EXIT_SUCCESS);
 }
 
-//funções
+//funcoes
 
 void FunCriacao(void) {
     FILE *fp;
