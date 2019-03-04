@@ -24,8 +24,6 @@ typedef struct {
     char classe[MAX];
     status status;
 } personagem;
-personagem A;
-
 //funcoes
 void FunCriacao();
 void FunMudarTudo(void);
@@ -70,6 +68,7 @@ int main(int argc, char* argv) {
 
 void FunCriacao(void) {
     FILE *fp;
+    personagem A;
     int s, choice;
     //nome
     printf("Insira o nome do seu personagem.\n >> ");
@@ -97,6 +96,9 @@ void FunCriacao(void) {
     printf("\n\n\tInsira sua idade.\n\nNUMBER>> ");
     do {
         scanf("%d", &A.idade);
+        if (A.idade<0){
+            printf("insira um valor valido\n");
+        }
     } while (A.idade < 0);
     //raça
     printf("\n\tSelecione a sua raca. \n\n");
@@ -228,7 +230,7 @@ void FunMostrar(void) {
 
     if ((fp = fopen(a.nome, "r")) == NULL) {
         printf("Nome invalido\n");
-        return;
+        return(1);
     }
     fread(pa, sizeof (personagem), 1, fp);
 
@@ -241,6 +243,142 @@ void FunMostrar(void) {
 
 
     //A.nome=A.genero=A.idade=A.raca=A.classe=A.status=0;teste
+    fclose(fp);
+    return;
+}
+void FunMudarTudo(void){
+    FILE *fp;
+    personagem a;
+    int ch;
+
+    printf("Insira o nome de um personagem salvo\n\n>> ");
+    scanf("%99[^\n]", &a.nome);
+
+    if ((fp = fopen(a.nome, "wr")) == NULL) {
+        printf("Nome invalido\n");
+        return(1);
+    }
+    //mudar nome
+    printf("Deseja mudar o nome do personagem?\n\n*Se sim digite '1'\n*se nao digite '0'\n>> ");
+    do{
+        scanf("%d",&ch);
+        if(ch<0||ch>1)
+            printf("digite um numero valido\n");
+    }while(ch<0||ch>1);
+        if(ch){
+            printf("Qual nome deseja colocar no seu personagem?\n");
+            scanf("%99[^\n]",&a.nome);
+        }
+    //mudar genero
+    printf("Deseja mudar o genero\n\n*Se sim digite '1'\n*se nao digite '0'\n>> ");
+     do{
+        scanf("%d",&ch);
+        if(ch<0||ch>1)
+            printf("digite um numero valido\n");
+    }while(ch<0||ch>1);
+        if(ch){
+            printf("\n\tSelecione um genero:\n\n1. Feminino\n2. Masculino\n3. Outros\nNUMBER >> ");
+            do {
+                scanf("%i", &ch);
+                switch (ch) {
+                    case 1:
+                        strcpy(a.genero, "Feminino");
+                        break;
+                    case 2:
+                        strcpy(a.genero, "Masculino");
+                        break;
+                    case 3:
+                        strcpy(a.genero, "Outros");
+                        break;
+                    default:
+                        printf("Insira um caractere valido.\n>> ");
+                }
+            } while (choice != 1 && choice != 2 && choice != 3 && choice != 4);
+            }
+    //mudar idade
+    printf("Deseja mudar a idade\n\n*Se sim digite '1'\n*se nao digite '0'\n>> ");
+    do{
+        scanf("%d",&ch);
+        if(ch<0||ch>1)
+            printf("digite um numero valido\n");
+    }while(ch<0||ch>1);
+        if(ch){
+            printf("\n\n\tInsira sua idade.\n\nNUMBER>> ");
+            do {
+                scanf("%d", &a.idade);
+                if (a.idade<0){
+                    printf("insira um valor valido\n");
+                }
+            } while (a.idade < 0);
+        }
+    //mudar raca
+    printf("Deseja mudar a raca?\n\n*Se sim digite '1'\n*se nao digite '0'\n>> ");
+        do{
+        scanf("%d",&ch);
+        if(ch<0||ch>1)
+            printf("digite um numero valido\n");
+        }while(ch<0||ch>1);
+        if(ch){
+            printf("\n\tSelecione a sua raca. \n\n");
+            printf("1. HUMANO\n2. ELFO\n3. ANAO\n4. HALFLINGS\n5. GNOMOS\n6. MEIO-ORC\nNUMBER >> ");
+        do {
+        scanf("%i", &ch);
+        switch (ch) {
+            case 1:strcpy(a.raca, "HUMANO");
+                break;
+            case 2:strcpy(a.raca, "ELFO");
+                break;
+            case 3:strcpy(a.raca, "ANAO");
+                break;
+            case 4:strcpy(a.raca, "HALFLINGS");
+                break;
+            case 5:strcpy(a.raca, "GNOMOS");
+                break;
+            case 6:strcpy(a.raca, "MEIO-ORC");
+                break;
+            default: printf("\nOpcao invalida. \nNUMBER >> ");
+        }
+        } while (ch != 1 && ch != 2 && ch != 3 && ch != 4 && ch != 5 && ch != 6);
+    }
+    //mudar classe
+    printf("Deseja mudar a classe\n\n*Se sim digite '1'\n*se nao digite '0'\n>> ");
+    do{
+        scanf("%d",&ch);
+        if(ch<0||ch>1)
+            printf("digite um numero valido\n");
+        }while(ch<0||ch>1);
+        if(ch){
+            printf("\n\tSelecione a sua classe. \n\n");
+    printf("1. GUERREIRO\n2. MAGO\n3. FEITICEIRO\n4. BARBARO\n5. ASSASSINO\n6. DRUIDA\n7. CLERIGO\n8. CACADOR\n9. PALADINO\nNUMBER >> ");
+    do {
+        scanf("%i", &ch);
+        switch (ch) {
+            case 1:strcpy(a.classe, "GUERREIRO");
+                break;
+            case 2:strcpy(a.classe, "MAGO");
+                break;
+            case 3:strcpy(a.classe, "FEITICEIRO");
+                break;
+            case 4:strcpy(a.classe, "BARBARO");
+                break;
+            case 5:strcpy(a.classe, "ASSASSINO");
+                break;
+            case 6:strcpy(a.classe, "DRUIDA");
+                break;
+            case 7:strcpy(a.classe, "CLERIGO");
+                break;
+            case 8:strcpy(a.classe, "CACADOR");
+                break;
+            case 9:strcpy(a.classe, "PALADINO");
+                break;
+            default: printf("\nOpcao invalida. \nNUMBER >> ");
+        }
+    } while (ch != 1 && ch != 2 && ch != 3 && ch != 4 && ch != 5 && ch != 6 && ch != 7 && ch != 8 && ch != 9);
+        }
+    //
+
+
+    fwrite(&a, sizeof (personagem), 1, fp);
     fclose(fp);
     return;
 }
