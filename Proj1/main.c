@@ -240,7 +240,7 @@ void FunMostrar(void) {
     printf("\tStatus:\n\tVida Maxima >> %d\n\tEnergia Maxima >> %d\n\tPontos de Forca >> %d\n\tPontos de Destreza >> %d\n\tPontos de Constituicao >> %d\n\tPontos de Sabedoria >> %d\n\tPontos de Inteligencia >> %d\n\tPontos de Carisma >> %d\n\n\n", a.status.vida_max, a.status.energia_max, a.status.pt_forca, a.status.pt_destreza, a.status.pt_const, a.status.pt_sab, a.status.pt_int, a.status.pt_cas);
 
 
-    //A.nome=A.genero=A.idade=A.raca=A.classe=A.status=0;  
+    //A.nome=A.genero=A.idade=A.raca=A.classe=A.status=0;teste
     fclose(fp);
     return;
 }
