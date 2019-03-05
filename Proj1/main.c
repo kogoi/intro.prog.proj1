@@ -38,7 +38,7 @@ int main(int argc, char* argv) {
     printf("BEM VINDO AO CRIADOR DE PERSONAGEM C&C(C&C)\n\n\n\n");
     do {
         do {
-            printf("\t\tMENU\n*Criar um novo personagem \n>> digite '1'\n\n*Modificar um personagem salvo \n>> digite '2'\n\n*exibir ficha de um personagem salvo\n>> digite '3'\n\n*Deletar personagem Salvo\n>> digite '4'.\n\n*Sair\n>> '0'\n\n>> ");
+            printf("\t\tMENU\n*Criar um novo personagem \n>> digite '1'\n\n*Modificar um personagem salvo \n>> digite '2'\n\n*Exibir ficha de um personagem salvo\n>> digite '3'\n\n*Deletar personagem Salvo\n>> digite '4'.\n\n*Sair\n>> '0'\n\n>> ");
             scanf("%d", &escolhamenu);
             setbuf(stdin, NULL);
         } while (!(escolhamenu == 1 || escolhamenu == 2 || escolhamenu == 3 || escolhamenu == 4 || escolhamenu == 0));
@@ -48,12 +48,15 @@ int main(int argc, char* argv) {
                 FunCriacao();
                 break;
             case 2:
-                //funMod();
+                FunMudarTudo();
+                break;
             case 3:
                 FunMostrar();
                 break;
             case 4:
-                //FunDEl();
+                FunDEL();
+                break;
+            case 0:
                 break;
             default:
                 printf("Alternativa invalida.\n Digite uma alternativa valida.\n");
@@ -226,11 +229,12 @@ void FunMostrar(void) {
     personagem a;
     pa = &a;
     printf("Insira o nome de um personagem salvo\n\n>> ");
+    setbuf(stdin,NULL);
     scanf("%99[^\n]", &a.nome);
 
-    if ((fp = fopen(a.nome, "r")) == NULL) {
+    if ((fp = fopen(a.nome, "rb")) == NULL) {
         printf("Nome invalido\n");
-        return(1);
+        return;
     }
     fread(pa, sizeof (personagem), 1, fp);
 
@@ -246,29 +250,40 @@ void FunMostrar(void) {
     fclose(fp);
     return;
 }
+
 void FunMudarTudo(void){
-    FILE *fp;
-    personagem a;
+    FILE *fp,*fp2;
+    void *pa;
     int ch;
-
+    char nome[100];
+    personagem a;
+	pa=&a;
+   
     printf("Insira o nome de um personagem salvo\n\n>> ");
-    scanf("%99[^\n]", &a.nome);
-
-    if ((fp = fopen(a.nome, "wr")) == NULL) {
+    scanf("%99[^\n]", &nome);
+    setbuf(stdin,NULL);
+    if ((fp = fopen(nome, "rb")) == NULL) {
         printf("Nome invalido\n");
-        return(1);
+        return;
     }
-    //mudar nome
-    printf("Deseja mudar o nome do personagem?\n\n*Se sim digite '1'\n*se nao digite '0'\n>> ");
-    do{
-        scanf("%d",&ch);
-        if(ch<0||ch>1)
-            printf("digite um numero valido\n");
-    }while(ch<0||ch>1);
-        if(ch){
-            printf("Qual nome deseja colocar no seu personagem?\n");
-            scanf("%99[^\n]",&a.nome);
-        }
+    
+    fread(pa, sizeof (personagem), 1, fp);
+     //mudar nome
+        printf("Deseja mudar o nome do personagem?\n\n*Se sim digite '1'\n*se nao digite '0'\n>> ");
+        do{
+            scanf("%d",&ch);
+            if(ch<0||ch>1)
+                printf("digite um numero valido\n");
+        }while(ch<0||ch>1);
+		if(ch){
+			printf("Qual nome deseja colocar no seu personagem?\n");
+			setbuf(stdin,NULL);
+			scanf("%99[^\n]",&a.nome);
+			if ((fp2 = fopen(a.nome, "w+b")) == NULL) {
+				printf("invalido\n");
+					return;
+				}
+			}
     //mudar genero
     printf("Deseja mudar o genero\n\n*Se sim digite '1'\n*se nao digite '0'\n>> ");
      do{
@@ -293,7 +308,7 @@ void FunMudarTudo(void){
                     default:
                         printf("Insira um caractere valido.\n>> ");
                 }
-            } while (choice != 1 && choice != 2 && choice != 3 && choice != 4);
+            } while (ch != 1 && ch != 2 && ch != 3 && ch != 4);
             }
     //mudar idade
     printf("Deseja mudar a idade\n\n*Se sim digite '1'\n*se nao digite '0'\n>> ");
@@ -349,38 +364,70 @@ void FunMudarTudo(void){
         }while(ch<0||ch>1);
         if(ch){
             printf("\n\tSelecione a sua classe. \n\n");
-    printf("1. GUERREIRO\n2. MAGO\n3. FEITICEIRO\n4. BARBARO\n5. ASSASSINO\n6. DRUIDA\n7. CLERIGO\n8. CACADOR\n9. PALADINO\nNUMBER >> ");
-    do {
-        scanf("%i", &ch);
-        switch (ch) {
-            case 1:strcpy(a.classe, "GUERREIRO");
+            printf("1. GUERREIRO\n2. MAGO\n3. FEITICEIRO\n4. BARBARO\n5. ASSASSINO\n6. DRUIDA\n7. CLERIGO\n8. CACADOR\n9. PALADINO\nNUMBER >> ");
+            do {
+            scanf("%i", &ch);
+                switch (ch) {
+                case 1:strcpy(a.classe, "GUERREIRO");
+                    break;
+                case 2:strcpy(a.classe, "MAGO");
+                    break;
+                case 3:strcpy(a.classe, "FEITICEIRO");
                 break;
-            case 2:strcpy(a.classe, "MAGO");
-                break;
-            case 3:strcpy(a.classe, "FEITICEIRO");
-                break;
-            case 4:strcpy(a.classe, "BARBARO");
-                break;
-            case 5:strcpy(a.classe, "ASSASSINO");
-                break;
-            case 6:strcpy(a.classe, "DRUIDA");
-                break;
-            case 7:strcpy(a.classe, "CLERIGO");
-                break;
-            case 8:strcpy(a.classe, "CACADOR");
-                break;
-            case 9:strcpy(a.classe, "PALADINO");
-                break;
-            default: printf("\nOpcao invalida. \nNUMBER >> ");
-        }
-    } while (ch != 1 && ch != 2 && ch != 3 && ch != 4 && ch != 5 && ch != 6 && ch != 7 && ch != 8 && ch != 9);
-        }
+                case 4:strcpy(a.classe, "BARBARO");
+                    break;
+                case 5:strcpy(a.classe, "ASSASSINO");
+                    break;
+                case 6:strcpy(a.classe, "DRUIDA");
+                    break;
+                case 7:strcpy(a.classe, "CLERIGO");
+                    break;
+                case 8:strcpy(a.classe, "CACADOR");
+                    break;
+                case 9:strcpy(a.classe, "PALADINO");
+                    break;
+                default: printf("\nOpcao invalida. \nNUMBER >> ");
+            }
+        } while (ch != 1 && ch != 2 && ch != 3 && ch != 4 && ch != 5 && ch != 6 && ch != 7 && ch != 8 && ch != 9);
+    }
     //
-
-
-    fwrite(&a, sizeof (personagem), 1, fp);
+	
+	
+    
+    fwrite(pa, sizeof (personagem), 1, fp2);
+	
     fclose(fp);
+    fclose(fp2);
+	remove(nome);
+    
+	return;
+}
+
+void FunDEL(void){
+	char nome[100];
+	printf("Insira o nome de um personagem salvo\n\n>> ");
+    setbuf(stdin,NULL);
+    scanf("%99[^\n]", &nome);
+	remove(nome);
     return;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
